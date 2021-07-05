@@ -1,0 +1,25 @@
+{% extends 'blogs/base.html' %}
+
+{% load static %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class='list'>
+    <table>
+        {% for blog in blogs_list %}
+            <tr>
+                <td class='title'><a href="{% url 'blogs:detail' blog.slug %}">{{ blog.title }}</a></td>
+                <td>{{ blog.published_on }}</td>
+                <td class='tag'>
+                    {% for tag in blog.tags.all %}
+                        <a href="{% url 'blogs:tag' tag.slug %}">{{ tag }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %} 
+    </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+
+{% load static %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}">
+{% endblock %}
+
+{% block header %}{{ blog }}{% endblock %}
+
+{% block content %}
+    <h3>By: {{ blog.author }}</h3>
+    <h3>Published: {{ blog.published_on }}</h3>
+    <h3>Last Updated: {{ blog.updated_on }}</h3>
+    {% if blog.tags.all %}
+        <h3>Tags: 
+            {% for tag in blog.tags.all %}
+                <a href="{% url 'blogs:tag' tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %} 
+        </h3>
+    {% endif %}
+{{ blog.body }}
+{% endblock %}

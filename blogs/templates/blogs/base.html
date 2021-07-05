@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block title %}<title>Just Some Fun Stuff</title>{% endblock %}
+        {% block css%}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}">
+        {% endblock %}
+    </head>
+    <body>
+        
+        {% block menu %}
+            <div class='menu'>
+                <ul>
+                    <li><a href="{% url 'blogs:index' %}">Home</a></li>
+                    <li><a href="{% url 'blogs:archives' %}">All Posts</a></li>
+                    <li><a href="{% url 'blogs:tags' %}">All Categories</a></li>
+                    <li><a href="{% url 'blogs:about_me' %}">About Me</a></li>
+                </ul>
+            </div>
+        {% endblock %}
+        <h1>{% block header %}Just Some Fun Stuff{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </body>
+</html>

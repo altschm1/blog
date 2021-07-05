@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+
+{% load static %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}">
+{% endblock %}
+
+{% block header %}All Categories{% endblock %}
+
+{% block content %}
+    <div class='grid'>
+    <table>
+        <tr>
+        {% for tag in tags_list %}
+            <td><a href="{% url 'blogs:tag' tag.slug %}">{{ tag }}</a></td>
+            {% if forloop.last %}</tr>
+            {% elif forloop.counter|divisibleby:3 %}</tr><tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %} 
